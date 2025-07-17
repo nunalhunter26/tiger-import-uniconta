@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <!-- Scheduled Tasks -->
+        <import resource="../../ScheduledTask/services.xml"/>
+
+        <!-- Commands -->
+        <import resource="../../Command/services.xml"/>
+
+        <!-- Services -->
+        <import resource="../../Service/services.xml"/>
+
+        <!-- Helpers -->
+        <import resource="../../Helper/services.xml"/>
+
+        <!-- Subscribers -->
+        <import resource="../../Subscriber/services.xml"/>
+
+        <!-- Controller -->
+        <import resource="../../Controller/services.xml"/>
+
+        <!-- Message Handlers -->
+        <import resource="../../MessageQueue/services.xml"/>
+    </imports>
+
+    <services>
+        <service id="TigerMedia\General\TigerImportUniconta\Core\System\SystemConfig\Api\DecoratedSystemConfigController" decorates="Shopware\Core\System\SystemConfig\Api\SystemConfigController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\Service\ConfigurationService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\Validation\SystemConfigValidator" />
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Service\WebhooksApiService"/>
+            <argument type="service" id="monolog.logger.tigeruniconta.webhook"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+</container>

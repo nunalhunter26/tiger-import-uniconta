@@ -1,0 +1,14 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="TigerMedia\General\TigerImportUniconta\Subscriber\HttpClientSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Subscriber\SystemConfigSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Service\WebhooksApiService"/>
+        </service>
+    </services>
+</container>

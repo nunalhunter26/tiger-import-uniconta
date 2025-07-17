@@ -1,0 +1,63 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <!-- Product -->
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Product\ProductTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Product\ProductTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.product"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Product\StockPricesTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Product\StockPricesTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.product_price_stock"/>
+        </service>
+
+        <!-- Bundles -->
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Bundles\BundleTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Bundles\BundleTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.bundle"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Bundles\StockTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Bundles\StockTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.bundle_stock"/>
+        </service>
+
+        <!-- Customers -->
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Customer\CustomerTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\Customer\CustomerTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.customer"/>
+        </service>
+
+        <!-- Custom Prices -->
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\CustomPrice\CustomPriceTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\ScheduledTask\CustomPrice\CustomPriceTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="import.custom_price"/>
+        </service>
+
+    </services>
+</container>

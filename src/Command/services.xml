@@ -1,0 +1,26 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="TigerMedia\General\TigerImportUniconta\Command\ImportProduct">
+            <argument type="service" id="import.product"/>
+            <tag name="console.command"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Command\ImportCustomer">
+            <argument type="service" id="import.customer"/>
+            <tag name="console.command"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Command\ImportCustomPrices">
+            <argument type="service" id="import.custom_price"/>
+            <tag name="console.command"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Command\ImportBomStocks">
+            <argument type="service" id="import.bundle_stock"/>
+            <tag name="console.command"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Command\ImportProductPriceStock">
+            <argument type="service" id="import.product_price_stock"/>
+            <tag name="console.command"/>
+        </service>
+    </services>
+</container>

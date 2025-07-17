@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Uniconta Settings</title>
+        <input-field>
+            <name>URL</name>
+            <label>Endpoint</label>
+            <placeholder>Ex. http://misc-unicontarest.kube01.tigermedia.local/Companies/*company_id*/</placeholder>
+        </input-field>
+        <input-field>
+            <name>Username</name>
+            <label>Username</label>
+        </input-field>
+        <input-field type="password">
+            <name>Password</name>
+            <label>Password</label>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Webhook Settings</title>
+        <input-field type="multi-select">
+            <name>webhookEntities</name>
+            <label>Entities</label>
+            <helpText>Select Uniconta entities to install webhooks.</helpText>
+            <options>
+                <option>
+                    <id>InvItem</id>
+                    <name>Products</name>
+                </option>
+                <option>
+                    <id>InvItemStorage</id>
+                    <name>Product Stocks</name>
+                </option>
+                <option>
+                    <id>Debtor</id>
+                    <name>Customers</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Import Schedule Block</title>
+        <input-field type="datetime">
+            <name>importBlockStartTime</name>
+            <label>Import Block Start Time</label>
+        </input-field>
+
+        <input-field type="datetime">
+            <name>importBlockEndTime</name>
+            <label>Import Block End Time</label>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Product Import</title>
+        <component name="sw-entity-single-select">
+            <name>productCmsPageId</name>
+            <entity>cms_page</entity>
+            <label>Default product layout</label>
+            <helpText>Default product layout</helpText>
+        </component>
+
+        <input-field type="bool">
+            <name>enableCategoryHandling</name>
+            <label>Enable Default Category Handling</label>
+            <helpText>Sometimes, customers has their own way of creating categories. Disable this setting in order to make way for the custom category handling.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-entity-single-select">
+            <name>parentCategory</name>
+            <entity>category</entity>
+            <label>Choose the top level category</label>
+            <helpText>New categories will be created under the selected category</helpText>
+        </component>
+
+        <input-field>
+            <name>Manufacturer</name>
+            <label>Manufacturer</label>
+            <placeholder>Ex. Shopware AG</placeholder>
+            <helpText>Leave blank to prevent the overwriting of manufacturers.</helpText>
+        </input-field>
+
+        <input-field type="multi-select">
+            <name>productFields</name>
+            <label>Product Fields</label>
+            <helpText>Option to select Uniconta fields. Leave blank to retrieve all fields.</helpText>
+            <options>
+                <option>
+                    <id>Qty</id>
+                    <name>Qty</name>
+                </option>
+                <option>
+                    <id>Available</id>
+                    <name>Available</name>
+                </option>
+                <option>
+                    <id>ItemType</id>
+                    <name>ItemType</name>
+                </option>
+                <option>
+                    <id>Blocked</id>
+                    <name>Blocked</name>
+                </option>
+                <option>
+                    <id>Weight</id>
+                    <name>Weight</name>
+                </option>
+                <option>
+                    <id>Unit</id>
+                    <name>Unit</name>
+                </option>
+                <option>
+                    <id>EAN</id>
+                    <name>EAN</name>
+                </option>
+                <option>
+                    <id>Photo</id>
+                    <name>Photo</name>
+                </option>
+                <option>
+                    <id>SalesQty</id>
+                    <name>SalesQty</name>
+                </option>
+                <option>
+                    <id>SalesPrice1</id>
+                    <name>SalesPrice1</name>
+                </option>
+                <option>
+                    <id>UserFields</id>
+                    <name>UserFields</name>
+                </option>
+                <option>
+                    <id>UserField</id>
+                    <name>UserField</name>
+                </option>
+                <option>
+                    <id>PurchasePrice</id>
+                    <name>PurchasePrice</name>
+                </option>
+                <option>
+                    <id>CostPrice</id>
+                    <name>CostPrice</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="bool">
+            <name>deactivateProductsNotInUniconta</name>
+            <label>Deactivate Missing Products from Uniconta</label>
+            <helpText>If enabled, any products in Shopware that were not found in the latest Uniconta import will be marked as inactive.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>importDocumentsFromUniconta</name>
+            <label>Import Documents from Uniconta</label>
+            <helpText>If enabled, the import process will fetch documents (e.g., PDFs) from Uniconta.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Customer Import</title>
+        <component name="sw-entity-single-select">
+            <name>defaultSalutation</name>
+            <entity>salutation</entity>
+            <labelProperty>displayName</labelProperty>
+            <label>Default salutation for customer import</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>defaultCustomerGroup</name>
+            <entity>customer_group</entity>
+            <label>Default customer group</label>
+        </component>
+
+        <input-field type="bool">
+            <name>removeCustomersNotInUniconta</name>
+            <label>Remove Missing Customers from Uniconta</label>
+            <helpText>If enabled, any customers in Shopware that were not found in the latest Uniconta import will be removed.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Product Task</title>
+
+        <!-- Product Task Settings -->
+        <input-field type="bool">
+            <name>productTaskIsEnabled</name>
+            <label>Enable Product Scheduled Task</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Enable Scheduled Task for Product import</helpText>
+        </input-field>
+        <input-field type="int">
+            <name>productTaskInterval</name>
+            <label>Task Interval</label>
+            <defaultValue>3600</defaultValue>
+        </input-field>
+        <input-field type="datetime">
+            <name>productTaskLastRun</name>
+            <label>Last Task Execution</label>
+            <disabled>true</disabled>
+        </input-field>
+
+        <!-- Product Price & Stock Task Settings -->
+        <input-field type="bool">
+            <name>productPriceStockTaskIsEnabled</name>
+            <label>Enable Product Price and Stock Scheduled Task</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Enable Scheduled Task for Product Price and Stock import</helpText>
+        </input-field>
+        <input-field type="int">
+            <name>productPriceStockTaskInterval</name>
+            <label>Task Interval</label>
+            <defaultValue>900</defaultValue>
+        </input-field>
+        <input-field type="datetime">
+            <name>productPriceStockTaskLastRun</name>
+            <label>Last Task Execution</label>
+            <disabled>true</disabled>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Customer Task</title>
+
+        <input-field type="bool">
+            <name>customerTaskIsEnabled</name>
+            <label>Enable Customer Scheduled Task</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Enable Scheduled Task for Customer import</helpText>
+        </input-field>
+        <input-field type="int">
+            <name>customerTaskInterval</name>
+            <label>Task Interval</label>
+            <defaultValue>3600</defaultValue>
+        </input-field>
+        <input-field type="datetime">
+            <name>customerTaskLastRun</name>
+            <label>Last Task Execution</label>
+            <disabled>true</disabled>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Custom Prices Task</title>
+        <input-field type="checkbox">
+            <name>isNet</name>
+            <label>Display Net Price</label>
+            <helpText>
+                Option to display net price for customer groups when creating custom prices.
+            </helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>customPriceTaskIsEnabled</name>
+            <label>Enable CustomPrice Scheduled Task</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Enable Scheduled Task for Custom Price import</helpText>
+        </input-field>
+        <input-field type="int">
+            <name>customPriceTaskInterval</name>
+            <label>Task Interval</label>
+            <defaultValue>3600</defaultValue>
+        </input-field>
+        <input-field type="datetime">
+            <name>customPriceTaskLastRun</name>
+            <label>Last Task Execution</label>
+            <disabled>true</disabled>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Bundle/BOM Task</title>
+
+        <!-- Bundle Stock Task Settings -->
+        <input-field type="bool">
+            <name>bundleStockTaskIsEnabled</name>
+            <label>Enable Bundle Stock Scheduled Task</label>
+            <defaultValue>false</defaultValue>
+            <helpText>Enable Scheduled Task for Bundle Stock import</helpText>
+        </input-field>
+        <input-field type="int">
+            <name>bundleStockTaskInterval</name>
+            <label>Task Interval</label>
+            <defaultValue>900</defaultValue>
+        </input-field>
+        <input-field type="datetime">
+            <name>bundleStockTaskLastRun</name>
+            <label>Last Task Execution</label>
+            <disabled>true</disabled>
+        </input-field>
+    </card>
+</config>

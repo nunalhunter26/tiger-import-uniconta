@@ -1,0 +1,70 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="import.product" class="TigerMedia\General\TigerImportUniconta\Service\ProductService">
+            <argument type="service" id="TigerMedia.Import.ProductService"/>
+            <argument type="service" id="TigerImport\Service\CategoryService"/>
+            <argument type="service" id="TigerImport\Service\ManufacturerService"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+            <argument type="service" id="Symfony\Contracts\EventDispatcher\EventDispatcherInterface"/>
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="monolog.logger.tigeruniconta.product"/>
+        </service>
+        <service id="import.product_price_stock" class="TigerMedia\General\TigerImportUniconta\Service\ProductPriceStockService">
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+            <argument type="service" id="TigerMedia.Import.ProductService"/>
+        </service>
+        <service id="import.customer" class="TigerMedia\General\TigerImportUniconta\Service\CustomerService">
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+            <argument type="service" id="country.repository"/>
+            <argument type="service" id="Symfony\Contracts\EventDispatcher\EventDispatcherInterface"/>
+            <argument type="service" id="TigerImport\Service\CustomerService"/>
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="customer.repository"/>
+        </service>
+        <service id="import.file" class="TigerMedia\General\TigerImportUniconta\Service\FileService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="TigerImport\Service\ImageImport" />
+            <argument type="service" id="monolog.logger.tigerimport.media" />
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+        </service>
+        <service id="rest.api" class="TigerMedia\General\TigerImportUniconta\Service\RestApi">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="tigermedia.httpclient"/>
+            <argument type="service" id="monolog.logger.tigeruniconta.api"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Service\AbstractImport">
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+        </service>
+        <service id="import.bundle" class="TigerMedia\General\TigerImportUniconta\Service\BundleService">
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="TigerMedia.Import.ProductService"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+        </service>
+        <service id="import.bundle_stock" class="TigerMedia\General\TigerImportUniconta\Service\BundleStockService">
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+            <argument type="service" id="TigerMedia.Import.ProductService"/>
+        </service>
+        <service id="import.custom_price" class="TigerMedia\General\TigerImportUniconta\Service\CustomPriceService">
+            <argument type="service" id="rest.api"/>
+            <argument type="service" id="custom_price.repository"/>
+            <argument type="service" id="TigerImport\Service\CustomerGroupService"/>
+            <argument type="service" id="TigerMedia.Import.ProductService"/>
+            <argument type="service" id="TigerMedia\General\TigerImportUniconta\Helper\ConfigHelper"/>
+            <argument type="service" id="TigerImport\Service\CurrencyService"/>
+        </service>
+        <service id="TigerMedia\General\TigerImportUniconta\Service\WebhooksApiService">
+            <argument type="service" id="tigermedia.httpclient"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="monolog.logger.tigeruniconta.webhook"/>
+        </service>
+    </services>
+</container>
